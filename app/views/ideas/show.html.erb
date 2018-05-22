@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Content:</strong>
-  <%= @idea.content %>
-</p>
-
-<p>
   <strong>User:</strong>
   <%= @idea.user %>
 </p>
 
+<p>
+  <strong>Content:</strong>
+  <%= @idea.content %>
+</p>
+
 <%= link_to 'Edit', edit_idea_path(@idea) %> |
-<%= link_to 'Back', ideas_path %>
+<%= link_to 'Back', user_ideas_path(@current_user) %>

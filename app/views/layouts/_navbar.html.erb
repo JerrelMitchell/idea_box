@@ -1,0 +1,13 @@
+<% content_for :navbar do %>
+<div class="visitor-nav">
+  <div><%= link_to "Log In", login_path %></div>
+  <div><%= link_to "Sign Up", new_user_path %> to track your ideas!</div>
+</div>
+<% end %>
+
+<% content_for :visitor_navbar do %>
+<div class="user-nav">
+  <div><%= link_to "Log Out", logout_path %></div>
+  <div><%= link_to "Home", root_path %></div>
+</div>
+<% end %>
