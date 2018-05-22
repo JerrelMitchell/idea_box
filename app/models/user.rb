@@ -1,4 +1,10 @@
 class User < ApplicationRecord
-  validates_presence_of :name, :email, :password
+  validates :name, presence: true
+  validates :email, uniqueness: true, presence: true
+  validates :password, presence: true
+  # validates_presence_of :is_admin, require: false
+
   has_many :ideas
+
+  has_secure_password
 end
