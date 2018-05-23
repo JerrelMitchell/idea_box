@@ -1,32 +1,26 @@
 class IdeasController < ApplicationController
   before_action :set_user_idea, only: [:show, :edit, :update, :destroy]
+  before_action :require_current_user, only: [:index, :show]
 
   def index
-    @ideas = Idea.all
+    @ideas = current_user.ideas
   end
 
   def show
-    @user = User.find(idea_params(:user_id))
+    @idea = current_user.ideas.find(idea_params)
   end
 
   def new
+    @user = current_user
     @idea = Idea.new
+    @categories = Category.all
   end
 
   def edit; end
 
-  def create
-    @idea = Idea.new(idea_params)
-    if @idea.save
-      redirect_to @idea, notice: 'Idea was successfully created.'
-    else
-      render :new
-    end
-  end
-
   def update
     if @idea.update(idea_params)
-      redirect_to @idea, notice: 'Idea was successfully updated.'
+      redirect_to user_ideas_path(current_user), notice: 'Idea was successfully updated.'
     else
       render :edit
     end
@@ -34,17 +28,32 @@ class IdeasController < ApplicationController
 
   def destroy
     @idea.destroy
-    redirect_to ideas_url, notice: 'Idea was successfully destroyed.'
+    redirect_to user_ideas_path(current_user), notice: 'Idea was successfully destroyed.'
+  end
+
+  def create
+    @user = current_user
+    @idea = current_user.ideas.create(idea_params)
+    if @idea.save
+      redirect_to user_ideas_path(current_user)
+      flash[:notice] = 'Idea was successfully created.'
+    else
+      render :new
+    end
   end
 
   private
 
+    def require_current_user
+      render file: 'public/404' unless current_user?
+    end
+
     def set_user_idea
-      @user = User.find(idea_params(:user_id))
+      @user = User.find(idea_params)
       @idea = Idea.find(params[:id])
     end
 
     def idea_params
-      params.require(:idea).permit(:content, :user_id)
+      params.require(:idea).permit(:content, :category_id, :title, :user_id)
     end
 end
