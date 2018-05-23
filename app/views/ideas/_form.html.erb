@@ -10,10 +10,8 @@
     <%= form.text_area :content %>
   </div>
 
-  <select class="drop-down">
-    <%= form.label :category_id %>
-    <%= form.collection_select :category_id, Category.all, :id, :title %>
-  </select>
+  <%= form.label :category %>
+  <%= form.collection_select :category, Category.all, :id, :title %>
 
   <div class="actions">
     <%= form.submit "Create Idea" %>

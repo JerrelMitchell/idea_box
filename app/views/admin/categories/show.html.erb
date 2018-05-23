@@ -3,7 +3,7 @@
   <%= @category.title %>
 </p>
 
-<%= link_to 'Delete', user_category_path(current_user, @category), method: :delete %>
-<%= link_to 'Edit', edit_user_category_path(current_user, @category) %> |
-<%= link_to 'Back to Your Categories', user_categorys_path(current_user) %>
+<%= link_to 'Delete', admin_category_path(@category), method: :delete %>
+<%= link_to 'Edit', edit_admin_category_path(@category) %> |
+<%= link_to 'Back to Your Categories', admin_categories_path %>
 <% end %>

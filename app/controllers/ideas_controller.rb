@@ -30,7 +30,7 @@ class IdeasController < ApplicationController
 
   def create
     @user = current_user
-    @idea = current_user.ideas.create(idea_params)
+    @idea = @user.ideas.create(idea_params)
     if @idea.save
       redirect_to user_ideas_path(current_user)
       flash[:notice] = 'Idea was successfully created.'

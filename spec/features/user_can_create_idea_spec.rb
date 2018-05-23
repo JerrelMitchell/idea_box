@@ -11,7 +11,7 @@ describe 'default user' do
       content = 'Super cool!'
       admin = User.create!(name: name, email: email, password: password, role: 1)
       user = User.create!(name: name, email: email2, password: password, role: 0)
-      category = admin.categories.create!(title: 'new')
+      category = admin.categories.create!(title: title)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
@@ -19,10 +19,11 @@ describe 'default user' do
 
       fill_in 'idea[title]', with: title
       fill_in 'idea[content]', with: content
+      select category.title, from: 'idea[category]'
+
       click_button 'Create Idea'
 
       expect(current_path).to eq(user_ideas_path(user))
-      expect(page).to have_link(title)
     end
   end
 end

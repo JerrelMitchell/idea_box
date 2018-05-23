@@ -2,9 +2,9 @@
 
 <ul>
   <% @categories.each do |category| %>
-    <p><%= link_to "#{category.title}", admin_category_path(current_user, category) %></p>
-    <li><%= link_to 'Edit', edit_admin_category_path(current_user, category) %></li>
-    <li><%= link_to 'Delete', admin_category_path(current_user, category), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    <p><%= link_to "#{category.title}", admin_category_path(category) %></p>
+    <li><%= link_to 'Edit', edit_admin_category_path(category) %></li>
+    <li><%= link_to 'Delete', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></li>
   <% end %>
 </ul>
 <br>
