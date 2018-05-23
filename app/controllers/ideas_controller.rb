@@ -13,7 +13,6 @@ class IdeasController < ApplicationController
   def new
     @user = current_user
     @idea = Idea.new
-    @categories = Category.all
   end
 
   def edit; end
@@ -50,10 +49,10 @@ class IdeasController < ApplicationController
 
     def set_user_idea
       @user = User.find(idea_params)
-      @idea = Idea.find(params[:id])
+      @idea = @user.ideas.find(params[:id])
     end
 
     def idea_params
-      params.require(:idea).permit(:content, :category_id, :title, :user_id)
+      params.require(:idea).permit(:content, :title, :user_id)
     end
 end
