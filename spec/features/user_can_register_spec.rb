@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'visitor' do
   context 'logging in' do
-    it 'should log in user' do
+    it 'should log in default user and bring them to their ideas page' do
       name = 'wow'
       email = 'wow@gmail.com'
       password = 'secret'
@@ -17,13 +17,13 @@ describe 'visitor' do
       fill_in :password, with: password
       click_button 'Log In'
 
-      expect(current_path).to eq(user_path(user))
+      expect(current_path).to eq(user_ideas_path(user))
       expect(page).to have_link('Log Out')
     end
   end
 
   context 'fills out registration form' do
-    it 'should make a user account successfully' do
+    it 'should make a default user account successfully' do
       name = 'wow'
       email = 'wow@gmail.com'
 
@@ -43,14 +43,14 @@ describe 'visitor' do
       expect(page).to have_content("Welcome, #{name}")
     end
 
-    it 'should not allow duplicate user names' do
+    it 'should not allow duplicate user emails' do
       name = 'wow'
       email = 'wow@gmail.com'
       User.create!(name: name, email: email, password: 'secret')
 
       visit new_user_path
 
-      fill_in :user_name, with: name
+      fill_in :user_name, with: 'Bubs'
       fill_in :user_email, with: email
       fill_in :user_password, with: 'supersecret'
 
