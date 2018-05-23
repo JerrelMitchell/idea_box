@@ -5,6 +5,9 @@ class User < ApplicationRecord
   # validates_presence_of :is_admin, require: false
 
   has_many :ideas
+  has_many :categories
 
   has_secure_password
+
+  enum role: [:default, :admin]
 end
