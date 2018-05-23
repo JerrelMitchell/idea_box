@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe 'default user' do
-  context 'creating new idea' do
-    it 'should create new idea' do
+  context 'editing existing idea' do
+    it 'should edit idea' do
       name = 'wow'
       email = 'wow@gmail.com'
       email2 = 'noway@wow.com'
@@ -12,17 +12,18 @@ describe 'default user' do
       admin = User.create!(name: name, email: email, password: password, role: 1)
       user = User.create!(name: name, email: email2, password: password, role: 0)
       category = admin.categories.create!(title: 'new')
+      idea = user.ideas.create!(title: title, content: content, category: category)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit new_user_idea_path(user)
+      visit user_idea_path(user, idea)
 
-      fill_in 'idea[title]', with: title
-      fill_in 'idea[content]', with: content
-      click_button 'Create Idea'
+      expect(page).to have_link 'Edit'
+      expect(page).to have_content(title)
 
-      expect(current_path).to eq(user_ideas_path(user))
-      expect(page).to have_link(title)
+      click_on 'Edit'
+
+      expect(current_path).to eq(edit_user_idea_path(user, idea))
     end
   end
 end

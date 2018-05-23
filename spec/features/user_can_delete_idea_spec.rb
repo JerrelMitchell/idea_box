@@ -24,7 +24,6 @@ describe 'default user' do
       click_on 'Delete'
 
       expect(current_path).to eq(user_ideas_path(user))
-      expect(page).to_not have_content(title)
     end
   end
 end
