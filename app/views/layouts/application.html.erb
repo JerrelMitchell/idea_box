@@ -11,11 +11,14 @@
 
   <body>
     <% if current_user.nil? %>
-    <% render 'layouts/navbar' %>
-    <%= yield :navbar %>
+      <% render 'layouts/navbar' %>
+      <%= yield :visitor %>
     <% else %>
-    <% render 'layouts/navbar' %>
-    <%= yield :visitor_navbar %>
+      <% render 'layouts/navbar' %>
+      <%= yield :user %>
+      <% if current_user.admin? %>
+        <%= yield :admin %>
+      <% end %>
     <% end %>
     <%= yield %>
   </body>
