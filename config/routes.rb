@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
+
   resources :users do
-    resources :ideas, shallow: true
+    resources :ideas
   end
 
+  namespace :admin do
+    resources :categories
+  end
 end
