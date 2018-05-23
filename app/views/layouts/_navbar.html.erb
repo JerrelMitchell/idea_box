@@ -6,6 +6,7 @@
 <% end %>
 
 <% content_for :user do %>
+<p id="notice"><%= notice %></p>
 <div class="user-nav">
   <div><%= link_to "Log Out", logout_path %></div>
   <div><%= link_to "Home", root_path %></div>

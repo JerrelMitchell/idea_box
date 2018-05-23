@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <% content_for :user do %>
 <p>
   <%= @idea.title %>
@@ -11,5 +9,5 @@
 
 <%= link_to 'Delete', user_idea_path(current_user, @idea), method: :delete %>
 <%= link_to 'Edit', edit_user_idea_path(current_user, @idea) %> |
-<%= link_to 'Back', user_ideas_path(current_user) %>
+<%= link_to 'Back to Your Ideas', user_ideas_path(current_user) %>
 <% end %>
