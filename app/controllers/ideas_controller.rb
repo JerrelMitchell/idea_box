@@ -4,16 +4,15 @@ class IdeasController < ApplicationController
 
   def index
     @ideas = current_user.ideas
+
   end
 
   def show
-    @idea = current_user.ideas.find(idea_params)
   end
 
   def new
     @user = current_user
     @idea = Idea.new
-    @categories = Category.all
   end
 
   def edit; end
@@ -49,8 +48,8 @@ class IdeasController < ApplicationController
     end
 
     def set_user_idea
-      @user = User.find(idea_params)
-      @idea = Idea.find(params[:id])
+      @user = current_user
+      @idea = @user.ideas.find(params[:id])
     end
 
     def idea_params

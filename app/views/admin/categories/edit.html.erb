@@ -1,0 +1,6 @@
+<h1>Edit: <%= @category.title %></h1>
+
+<%= render 'form', category: @category, user: current_user %>
+
+<%= link_to "Back to #{@category.title}" , user_category_path(current_user, @category) %> |
+<%= link_to 'Categories Index', admin_categories_path(current_user) %>

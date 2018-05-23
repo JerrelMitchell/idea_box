@@ -6,6 +6,4 @@ class CategoryController < ActionController::Base
   def show
     @category = Category.find(params[:id])
   end
-
-  def new; end
 end

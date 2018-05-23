@@ -6,11 +6,13 @@
 <% end %>
 
 <% content_for :user do %>
+<p id="notice"><%= notice %></p>
 <div class="user-nav">
   <div><%= link_to "Log Out", logout_path %></div>
   <div><%= link_to "Home", root_path %></div>
   <% if !current_user.nil? %>
   <div><%= link_to "Quick New Idea", new_user_idea_path(current_user) %></div>
+  <div><%= link_to 'Ideas Index', user_ideas_path(current_user) %></div>
   <% end %>
 </div>
 <% end %>

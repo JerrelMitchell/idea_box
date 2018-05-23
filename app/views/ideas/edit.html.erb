@@ -1,6 +1,6 @@
-<h1>Editing Idea</h1>
+<h1>Edit: <%= @idea.title %></h1>
 
 <%= render 'form', idea: @idea, user: current_user %>
 
-<%= link_to 'Show', user_idea_path(current_user, @idea) %> |
-<%= link_to 'Back', user_ideas_path(current_user) %>
+<%= link_to "Back to #{@idea.title}" , user_idea_path(current_user, @idea) %> |
+<%= link_to 'Ideas Index', user_ideas_path(current_user) %>
