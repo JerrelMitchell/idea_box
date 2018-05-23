@@ -7,7 +7,7 @@ class IdeasController < ApplicationController
   end
 
   def show
-    @idea = current_user.ideas.find(idea_params)
+    @idea = Idea.find(params[:id])
   end
 
   def new
@@ -49,7 +49,7 @@ class IdeasController < ApplicationController
     end
 
     def set_user_idea
-      @user = User.find(idea_params)
+      @user = User.find(params[:user_id])
       @idea = Idea.find(params[:id])
     end
 
