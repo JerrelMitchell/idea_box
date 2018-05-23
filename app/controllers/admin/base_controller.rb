@@ -1,5 +1,5 @@
 class Admin::BaseController < ApplicationController
-  before_action :require_admin, only: [:index]
+  before_action :require_admin, except: [:index, :show]
 
   private
 

@@ -1,18 +1,13 @@
-<p id="notice"><%= notice %></p>
-
 <% content_for :user do %>
 <p>
-  <strong>User:</strong>
-  <%= @idea.user %>
+  <%= @idea.title %>
 </p>
 
 <p>
-  <strong>Content:</strong>
   <%= @idea.content %>
 </p>
 
+<%= link_to 'Delete', user_idea_path(current_user, @idea), method: :delete %>
 <%= link_to 'Edit', edit_user_idea_path(current_user, @idea) %> |
-<%= link_to 'Back', user_ideas_path(current_user) %>
-
-<h1>404 The page you were looking for doesn't exist!</h1>
+<%= link_to 'Back to Your Ideas', user_ideas_path(current_user) %>
 <% end %>

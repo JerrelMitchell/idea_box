@@ -4,10 +4,10 @@ class IdeasController < ApplicationController
 
   def index
     @ideas = current_user.ideas
+
   end
 
   def show
-    @idea = current_user.ideas.find(idea_params)
   end
 
   def new
@@ -48,7 +48,11 @@ class IdeasController < ApplicationController
     end
 
     def set_user_idea
+<<<<<<< HEAD
       @user = User.find(idea_params)
+=======
+      @user = current_user
+>>>>>>> c19ccdd6db23707e28ee208c0b2fafcc32266ecf
       @idea = @user.ideas.find(params[:id])
     end
 
