@@ -1,7 +1,11 @@
-<%= form_for [@admin, @category] do |form| %>
+<%= form_for [:admin, @category] do |form| %>
 
 <div class="field">
   <%= form.label :title %>
   <%= form.text_field :title %>
+</div>
+
+<div class="actions">
+  <%= form.submit "Create Category" %>
 </div>
 <% end %>
