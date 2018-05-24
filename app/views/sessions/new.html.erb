@@ -2,6 +2,7 @@
   <h1>
     Welcome to IdeaBox
   </h1>
+  <br>
 </div>
 
 <div class="login">
@@ -12,14 +13,17 @@
 
 <%= label_tag :email %>
 <%= text_field_tag :email %>
- 
+
 <%= label_tag :password %>
 <%= password_field_tag :password %>
 <br>
 <%= submit_tag "Log In" %>
 </div>
+<br>
 
-<div><%= link_to "Sign Up", new_user_path %> to track your ideas!</div>
+<div>
+  <h4><%= link_to "Sign Up", new_user_path %> to track your ideas!</h4>
+</div>
 <% else %>
 
 <h4>You're already signed in! Want to <%= link_to "make an idea", new_user_idea_path(current_user)%>?</h4>
