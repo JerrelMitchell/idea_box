@@ -1,1 +1,7 @@
-<h1>Welcome, <%= @user.name %></h1>
+<h1>Account Information</h1>
+<h3><%= current_user.name %></h3>
+<h5><%= current_user.email %></h5>
+<br>
+<%= link_to 'Edit Profile', edit_user_path(current_user) %> |
+<%= link_to 'Change Password', edit_user_path %> |
+<%= link_to 'Delete Profile', user_path(current_user), method: :delete, data: { confirm: 'Are you sure?' } %>
