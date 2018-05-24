@@ -20,6 +20,7 @@ class IdeasController < ApplicationController
       redirect_to user_ideas_path(current_user), notice: 'Idea was successfully updated.'
     else
       render :edit
+      flash[:notice] = 'Fill in all fields before submitting!'
     end
   end
 
@@ -35,6 +36,7 @@ class IdeasController < ApplicationController
       flash[:notice] = 'Idea was successfully created.'
     else
       render :new
+      flash[:notice] = 'Fill in all fields before submitting!'
     end
   end
 
