@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 
   def edit; end
 
+  def index; end
+
   def new
     @user = User.new
   end
@@ -16,6 +18,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     else
       render :new
+      flash[:notice] = 'Fill in all fields before submitting!'
     end
   end
 
@@ -24,12 +27,13 @@ class UsersController < ApplicationController
       redirect_to user_path(@user), notice: 'User was successfully updated.'
     else
       render :edit
+      flash[:notice] = 'Fill in all fields before submitting!'
     end
   end
 
   def destroy
     @user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    redirect_to root_path, notice: 'Sad to see you go. Rejoin anytime!'
   end
 
   private

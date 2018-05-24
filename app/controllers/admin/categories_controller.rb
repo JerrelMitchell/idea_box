@@ -23,6 +23,7 @@ class Admin::CategoriesController < Admin::BaseController
       redirect_to admin_categories_path, notice: 'Category was successfully updated.'
     else
       render :edit
+      flash[:notice] = 'Fill in all fields before submitting!'
     end
   end
 
@@ -34,6 +35,7 @@ class Admin::CategoriesController < Admin::BaseController
       flash[:notice] = 'Category was successfully created.'
     else
       render :new
+      flash[:notice] = 'Fill in all fields before submitting!'
     end
   end
 
