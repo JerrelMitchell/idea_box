@@ -1,19 +1,14 @@
 <%= form_for [@user, @idea] do |form| %>
 
-<div class="field">
   <%= form.label :title %>
   <%= form.text_field :title %>
-</div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+  <%= form.label :content %>
+  <%= form.text_area :content %>
 
   <%= form.label :category %>
   <%= form.collection_select :category, Category.all, :id, :title %>
 
-  <div class="actions">
-    <%= form.submit "Create Idea" %>
-  </div>
+  <%= form.submit %>
+
 <% end %>

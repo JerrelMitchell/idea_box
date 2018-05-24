@@ -10,16 +10,19 @@
   </head>
 
   <body>
-    <% if current_user.nil? %>
-      <% render 'layouts/navbar' %>
-      <%= yield :visitor %>
-    <% else %>
-      <% render 'layouts/navbar' %>
-      <%= yield :user %>
-      <% if current_user.admin? %>
-        <%= yield :admin %>
+    <container>
+      <% if current_user.nil? %>
+        <% render 'layouts/navbar' %>
+        <%= yield :visitor %>
+      <% else %>
+        <% render 'layouts/navbar' %>
+        <%= yield :user %>
+        <% if current_user.admin? %>
+          <%= yield :admin %>
+        <% end %>
       <% end %>
-    <% end %>
-    <%= yield %>
+      <div id="notice"><%= notice %></div>
+      <%= yield %>
+    </container>
   </body>
 </html>

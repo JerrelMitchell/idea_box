@@ -1,24 +1,20 @@
 <% content_for :visitor do %>
-<div class="visitor-nav">
-  <div><%= link_to "Log In", login_path %></div>
-  <div><%= link_to "Sign Up", new_user_path %> to track your ideas!</div>
-</div>
 <% end %>
 
 <% content_for :user do %>
-<p id="notice"><%= notice %></p>
 <div class="user-nav">
-  <div><%= link_to "Log Out", logout_path %></div>
-  <div><%= link_to "Home", root_path %></div>
   <% if !current_user.nil? %>
-  <div><%= link_to "Quick New Idea", new_user_idea_path(current_user) %></div>
-  <div><%= link_to 'Ideas Index', user_ideas_path(current_user) %></div>
+  <%= link_to "Home", root_path %> |
+  <%= link_to "New Idea", new_user_idea_path(current_user) %> |
+  <%= link_to 'Ideas Index', user_ideas_path(current_user) %> |
+  <%= link_to "Log Out", logout_path %>
   <% end %>
 </div>
 <% end %>
 
 <% content_for :admin do %>
 <div class="admin-nav">
-  <!-- create category etc -->
+  <%= link_to "New Category", new_admin_category_path %> |
+  <%= link_to "Categories Index", admin_categories_path %>
 </div>
 <% end %>

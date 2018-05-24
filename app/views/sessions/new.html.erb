@@ -1,16 +1,26 @@
-<h1>
-  Log In to IdeaBox!
-</h1>
-<p id="notice">
-  <%= flash[:notice] %>
-</p>
+<div class="welcome">
+  <h1>
+    Welcome to IdeaBox
+  </h1>
+</div>
 
+<div class="login">
+
+<% if current_user.nil? %>
+<h3>Log In</h3>
 <%= form_tag login_path %>
 
 <%= label_tag :email %>
 <%= text_field_tag :email %>
-
+ 
 <%= label_tag :password %>
 <%= password_field_tag :password %>
-
+<br>
 <%= submit_tag "Log In" %>
+</div>
+
+<div><%= link_to "Sign Up", new_user_path %> to track your ideas!</div>
+<% else %>
+
+<h4>You're already signed in! Want to <%= link_to "make an idea", new_user_idea_path(current_user)%>?</h4>
+<% end %>
