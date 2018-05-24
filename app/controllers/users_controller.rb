@@ -5,8 +5,6 @@ class UsersController < ApplicationController
 
   def edit; end
 
-  def index; end
-
   def new
     @user = User.new
   end
