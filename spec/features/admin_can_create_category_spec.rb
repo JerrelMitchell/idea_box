@@ -19,6 +19,22 @@ describe 'admin user' do
       expect(current_path).to eq(admin_categories_path)
       expect(page).to have_content(title)
     end
+    it 'will fail if all fields are not filled out' do
+      error = 'Fill in all fields before submitting!'
+      name = 'wow'
+      email = 'wow@gmail.com'
+      password = 'secret'
+      admin = User.create!(name: name, email: email, password: password, role: 1)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit new_admin_category_path
+
+      click_button 'Create Category'
+      click_button 'Create Category'
+
+      expect(page).to have_content(error)
+    end
   end
   context 'as default user' do
     it 'does not allow me to see admin categories creation page' do

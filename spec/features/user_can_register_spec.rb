@@ -40,7 +40,23 @@ describe 'visitor' do
       click_on 'Create User'
 
       expect(current_path).to eq(user_path(User.last))
-      expect(page).to have_content("Welcome, #{name}")
+      expect(page).to have_content(name)
+    end
+
+    it 'can log out of account after signing in' do
+      name1 = 'blipper'
+      email1 = 'yeahway@wow.com'
+      password1 = 'secret'
+      user = User.create!(name: name1, email: email1, password: password1, role: 0)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      visit user_path(user)
+
+      expect(page).to have_link 'Log Out'
+
+      click_on 'Log Out'
+
+      expect(current_path).to eq(root_path)
     end
 
     it 'should not allow duplicate user emails' do
