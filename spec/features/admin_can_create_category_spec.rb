@@ -17,7 +17,7 @@ describe 'admin user' do
       click_button 'Create Category'
 
       expect(current_path).to eq(admin_categories_path)
-      expect(page).to have_link(title)
+      expect(page).to have_content(title)
     end
   end
   context 'as default user' do

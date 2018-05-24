@@ -23,10 +23,10 @@ describe 'admin user' do
       expect(current_path).to eq(edit_admin_category_path(category))
 
       fill_in 'category[title]', with: new_title
-      click_button 'Create Category'
+      click_button 'Update Category'
 
       expect(current_path).to eq(admin_categories_path)
-      expect(page).to have_link(new_title)
+      expect(page).to have_content(new_title)
       expect(page).to_not have_link(title)
     end
   end
